@@ -123,9 +123,13 @@ recode bmicat2 5=1 7=0
 ///now 0 underweight 1 normal 2 overweight 3 obese
 tab bmicat bmicat2
 logistic case time s1-s4 i.educ i.cursmoke c.cigpday##c.cigpday i.sex##c.bmicat2
+test bmicat2
+///trend test for females
 
-testparm bmicat2
-
-
-
+recode sex 0=2
+recode sex 1=0
+recode sex 2=1
+logistic case time s1-s4 i.educ i.cursmoke c.cigpday##c.cigpday i.sex##c.bmicat2
+test bmicat2
+///trend test for males
 
